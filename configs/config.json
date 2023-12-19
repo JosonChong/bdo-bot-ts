@@ -2,5 +2,6 @@
     "discordToken" : "enter your token here",
     "webhookUrls" : [
         { "channel" : "enter your channel name here (name it whatever you want)", "url" : "enter your webhook url here", "ignoreFiles" : ["xml file names that you want to ignore for this channel (if any)"]}
-    ]
+    ],
+    "hashSecret" : "enter your hashsecret here"
 }
