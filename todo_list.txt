@@ -1,0 +1,2 @@
+1.Support the function can get the exchanges price info(GetMarketPriceInfo)
+2.Support the other region server exchanges price info check

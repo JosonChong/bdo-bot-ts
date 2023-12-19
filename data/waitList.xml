@@ -1,0 +1,209 @@
+<items>
+    <!-- 德柏項鍊 -->
+    <item>
+        <id>11653</id>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+
+    <!-- 德柏腰帶 -->
+    <item>
+        <id>12276</id>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+
+    <!-- 德柏耳環 -->
+    <item>
+        <id>11882</id>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+
+    <!-- 太白的腰帶 -->
+    <item>
+        <id>12282</id>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+
+    <!-- 摩諾斯飾品 -->
+    <item>
+        <id>705509</id>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+    <item>
+        <id>705510</id>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+    <item>
+        <id>705511</id>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+    <item>
+        <id>705512</id>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+
+    <!-- 摩諾斯工具 -->
+    <item>
+        <id>16847</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>16481</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>16487</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>16482</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>16486</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>16479</id>
+        <sid>20</sid>
+    </item>
+
+    <!-- 摩諾斯服裝 -->
+    <item>
+        <id>14082</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>705037</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>705032</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>705010</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>705052</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>705047</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>705015</id>
+        <sid>20</sid>
+    </item>
+
+    <item>
+        <id>705022</id>
+        <sid>20</sid>
+    </item>
+
+    <!-- 卡德里 -->
+    <item>
+        <id>12032</id>
+        <!-- <sid>4</sid> -->
+        <sid>5</sid>
+    </item>
+
+    <!-- 黑耳 -->
+    <item>
+        <id>11853</id>
+        <!-- <sid>4</sid> -->
+        <sid>5</sid>
+    </item>
+
+    <!-- 白耳 -->
+    <item>
+        <id>11875</id>
+        <!-- <sid>4</sid> -->
+        <sid>5</sid>
+    </item>
+
+    <!-- 黎明 -->
+    <item>
+        <id>11855</id>
+        <!-- <sid>4</sid> -->
+        <sid>5</sid>
+    </item>
+
+    <!-- 恐懼之影 -->
+    <item>
+        <id>12068</id>
+        <!-- <sid>4</sid> -->
+        <sid>5</sid>
+    </item>
+
+    <!-- 恐懼之影 -->
+    <item>
+        <id>12068</id>
+        <!-- <sid>4</sid> -->
+        <sid>5</sid>
+    </item>
+
+    <!-- 夢幻耳環 -->
+    <item>
+        <id>11856</id>
+        <sid>5</sid>
+    </item>
+
+    <!-- 拉布雷斯卡的頭盔 -->
+    <item>
+        <id>719897</id>
+        <sid>3</sid>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+
+    <!-- 死亡之神盔甲 -->
+    <item>
+        <id>719898</id>
+        <sid>3</sid>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+
+    <!-- 旦之手套 -->
+    <item>
+        <id>719899</id>
+        <sid>3</sid>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+
+    <!-- 旦之手套 -->
+    <item>
+        <id>719955</id>
+        <sid>3</sid>
+        <sid>4</sid>
+        <sid>5</sid>
+    </item>
+
+    <!-- test -->
+    <!-- <item>
+        <id>719897</id>
+        <sid>0</sid>
+    </item> -->
+</items>

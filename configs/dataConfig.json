@@ -1,0 +1,6 @@
+{
+    "itemGroupPaths" : [ "silverClothes.xml", "mainHandBlackstar.xml", "awakBlackstar.xml", "offHandBlackstar.xml", "waitList.xml", "awakVBlackstar.xml", "imperialCooking.xml" ],
+    "inStockListPaths" : [ "mainHandBlackstar.xml", "awakBlackstar.xml", "offHandBlackstar.xml" ],
+    "waitListPaths" : [ "waitList.xml", "awakVBlackstar.xml" ],
+    "imperialCookingListPaths" : [ "imperialCooking.xml" ]
+}
