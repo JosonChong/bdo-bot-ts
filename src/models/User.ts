@@ -1,9 +1,10 @@
-import { Exclude, Expose, Transform, TransformPlainToInstance } from "class-transformer";
+import { Exclude, Expose, Transform } from "class-transformer";
 import { BatchItem } from "./BatchItem";
 import { BatchItemGroup } from "./BatchItemGroup";
 import { DiscordGroup } from "./DiscordGroup";
 import { Item } from "./Item";
-import { getItemGroups, itemIdAndbatchItemMap } from "../services/dataService";
+import { getItemGroups, itemIdAndbatchItemMap, persistUsers } from "../services/dataService";
+import { BlockContent, ContentLine } from "./BotMessage";
 
 export class User {
     
@@ -27,7 +28,7 @@ export class User {
         for (let discord in value) {
             let typeMap = new Map();
             for (let type in value[discord]) {
-                typeMap.set(type, value[discord][type]);
+                typeMap.set(type, value[discord][type].map((item: any) => item.toString()));
             }
             result.set(discord, typeMap);
         }
@@ -61,7 +62,7 @@ export class User {
                             }
                         }
                     } else if (subscriptionType === "notifyItemIds") {
-                        for (let itemId of itemGroupsOrItemIds as []) {
+                        for (let itemId of itemGroupsOrItemIds ?? []) {
                             let batchItem = itemIdAndbatchItemMap.get(parseInt(itemId));
                             
                             let fullSidsBatchItem = batchItem?.createFullSidsFromDummy();
@@ -76,6 +77,39 @@ export class User {
         }
 
         return this.discordGroupNSubscriptionMap;
+    }
+
+    getSubscriptionContents(): ContentLine[] {
+        let result: ContentLine[] = [];
+
+        let discordGrups = this.discordGroups;
+
+        for (let [groupName, map] of discordGrups) {
+            let itemGroupNames = map.get("notifyItemGroups");
+            let itemIds = map.get("notifyItemIds");
+
+            if ((itemGroupNames && itemGroupNames.length > 0) || (itemIds && itemIds.length > 0)) {
+                let blockContent = new BlockContent();
+                result.push(blockContent);
+                blockContent.addContent(`Discord group ${groupName}`);
+
+                if (itemGroupNames && itemGroupNames.length > 0) {
+                    blockContent.addContent("Subscribed Item Groups:");
+                    for (let itemGroupName of itemGroupNames) {
+                        blockContent.addContent(itemGroupName);                    
+                    }
+                }
+
+                if (itemIds && itemIds.length > 0) {
+                    blockContent.addContent("Subscribed Items:");
+                    for (let itemId of itemIds) {
+                        blockContent.addContent(itemId);                    
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 
     // TODO enum for type
@@ -102,13 +136,13 @@ export class User {
         }
 
         let notifyItemIds = subscribedDiscordGroup!.get("notifyItemIds")!;
-        if (!notifyItemIds.find(notifyItemId => notifyItemId === String(batchItem.id))) {
-            notifyItemIds.push(String(batchItem.id));
+        if (!notifyItemIds.find(notifyItemId => notifyItemId === batchItem.id.toString())) {
+            notifyItemIds.push(batchItem.id.toString());
         }
 
         this.discordGroupNSubscriptionMap = undefined;
 
-        // TODO persist user
+        persistUsers();
     }
 
     subscribeBatchGroup(discordGroup: DiscordGroup, itemGroupName: string) {
@@ -129,7 +163,58 @@ export class User {
         
         this.discordGroupNSubscriptionMap = undefined;
 
-        // TODO persist user
+        persistUsers();
+    }
+
+    unsubscribeBatchItem(discordGroup: DiscordGroup, batchItem: BatchItem): boolean {
+        if (!this.discordGroups.has(discordGroup.name)) {
+            return false;
+        }
+
+        let subscribedDiscordGroup = this.discordGroups.get(discordGroup.name)!;
+
+        if (!subscribedDiscordGroup.has("notifyItemIds")) {
+            return false;
+        }
+
+        let notifyItemIds = subscribedDiscordGroup!.get("notifyItemIds")!;
+
+        console.log(notifyItemIds);
+
+        const index = notifyItemIds.indexOf(batchItem.id.toString());
+        if (index > -1) {
+            notifyItemIds.splice(index, 1);
+            this.discordGroupNSubscriptionMap = undefined;
+            persistUsers();
+        
+            return true;
+        }
+
+        return false;
+    }
+
+    unsubscribeBatchGroup(discordGroup: DiscordGroup, itemGroupName: string): boolean {
+        if (!this.discordGroups.has(discordGroup.name)) {
+            return false;
+        }
+
+        let subscribedDiscordGroup = this.discordGroups.get(discordGroup.name);
+
+        if (!subscribedDiscordGroup!.has("notifyItemGroups")) {
+            return false;
+        }
+
+        let notifyItemGroups = subscribedDiscordGroup!.get("notifyItemGroups")!;
+        const index = notifyItemGroups.indexOf(itemGroupName);
+        if (index > -1) {
+            notifyItemGroups.splice(index, 1);
+            this.discordGroupNSubscriptionMap = undefined;
+            persistUsers();
+        
+            return true;
+        }
+
+        return false;
     }
 
 }

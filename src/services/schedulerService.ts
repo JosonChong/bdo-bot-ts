@@ -102,7 +102,7 @@ export function startCheckWaitListJob() {
                 }
 
                 let subscribedUsers: User[] = Array.from(dataService.registeredUsers.values()).filter(
-                    user => items.some(item => user.isSubscribedItem(discordGroup, item, dataService.notifyGroups.waitList)))
+                    user => subscribedItems.some(item => user.isSubscribedItem(discordGroup, item, dataService.notifyGroups.waitList)));
                 
                 botMessage.addUserTags(subscribedUsers);
 

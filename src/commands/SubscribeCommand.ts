@@ -1,6 +1,6 @@
 import { PersonalMessage } from "../models/BotMessage";
 import { User } from "../models/User";
-import { discordGroups, itemIdAndbatchItemMap } from "../services/dataService";
+import { discordGroups, itemIdAndbatchItemMap, registerItemGroupsMapping } from "../services/dataService";
 import { DiscordCommand, InputData } from "./DiscordCommand";
 
 interface SubscribeInputData extends InputData {
@@ -39,8 +39,20 @@ export class SubscribeCommand extends DiscordCommand {
 
             user.subscribeBatchItem(discordGroup!, item);
 
-            botMessage.addText(`Subscribed item ${inputData.itemGroupOrId} on ${inputData.discordGroup}.`)
+            botMessage.addText(`Subscribed item ${inputData.itemGroupOrId} on ${inputData.discordGroup}.`);
+        } else {
+            if (!registerItemGroupsMapping[inputData.itemGroupOrId]) {
+                botMessage.addText(`Item group ${inputData.itemGroupOrId} not found.`);
+
+                return botMessage;
+            }
+
+            user.subscribeBatchGroup(discordGroup!, inputData.itemGroupOrId);
+
+            botMessage.addText(`Subscribed item group ${inputData.itemGroupOrId} on ${inputData.discordGroup}.`);
         }
+
+        botMessage.contents.push(... user.getSubscriptionContents());
 
         return botMessage;
     }

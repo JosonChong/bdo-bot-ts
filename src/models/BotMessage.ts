@@ -150,12 +150,12 @@ export class WebhookMessage extends BotMessage {
     }
 }
 
-abstract class ContentLine {
+export abstract class ContentLine {
     alreadySent: boolean = false;
     abstract displayText(): string;
 }
 
-class TextContent extends ContentLine {
+export class TextContent extends ContentLine {
     content: string;
 
     constructor(content: string) {
@@ -172,7 +172,7 @@ class TextContent extends ContentLine {
     }
 }
 
-class BlockContent extends ContentLine {
+export class BlockContent extends ContentLine {
     contents: string[];
 
     constructor(contents: string[] = []) {
@@ -196,11 +196,11 @@ class BlockContent extends ContentLine {
     }
 }
 
-class TableContent extends ContentLine {
+export class TableContent extends ContentLine {
     headers: string[];
     rows: string[][];
 
-    constructor(headers: string[] = [], rows: string[][]) {
+    constructor(headers: string[] = [], rows: string[][] = []) {
         super();
         this.headers = headers;
         this.rows = rows;

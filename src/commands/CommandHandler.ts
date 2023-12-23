@@ -6,12 +6,14 @@ import { UnknownCommandError } from '../errors/UnkownCommandError';
 import { TestCommand } from './TestCommand';
 import { AccountCommand } from './AccountCommand';
 import { SubscribeCommand } from './SubscribeCommand';
+import { UnsubscribeCommand } from './UnsubscribeCommand';
+
 
 export class CommandHandler {
 
     private commandMap: Map<string, DiscordCommand> = new Map();
 
-    private commandClasses = [TestCommand, AccountCommand, SubscribeCommand];
+    private commandClasses = [TestCommand, AccountCommand, SubscribeCommand, UnsubscribeCommand];
 
     constructor() {
         for (let commandClass of this.commandClasses) {

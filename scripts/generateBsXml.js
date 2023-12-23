@@ -1,6 +1,6 @@
 const fs = require('fs');
 const convert = require('xml-js');
-const commonUtil = require('./src/utils/commonUtils');
+const commonUtil = require('../src/utils/commonUtils');
 
 const homePath = "/../../";
 const mainHandBSList = [690563, 692045, 715001, 715003, 715005, 715007, 715009, 715011, 715013, 715016, 715017, 715019, 715021, 718616, 730564, 732313, 733063, 735463, 739463, 740763];

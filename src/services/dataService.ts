@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { itemGroupPaths, inStockListPaths, waitListPaths, imperialCookingListPaths } from '../../configs/dataConfig.json'
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { log } from '../utils/logUtils';
 import { transform } from 'camaro';
 import { BatchItemGroup } from '../models/BatchItemGroup';
 import { parseApiResponse } from "../utils/parseUtils";
 import { Item } from "../models/Item";
-import { plainToInstance } from "class-transformer";
+import { instanceToPlain, plainToInstance } from "class-transformer";
 import { BatchItem } from "../models/BatchItem";
 import { DiscordGroup } from '../models/DiscordGroup';
 import { getConfigPath, getHomeFilePath, getXmlPath } from "../utils/commonUtils";
@@ -255,8 +255,12 @@ export function getOrCreateUser(id: string, username?: string): User {
     if (!registeredUsers.has(id)) {
         let user = new User(id, username)
         registeredUsers.set(id, user);
-        // dataService.persistUsers(users);
+        persistUsers();
     }
 
     return registeredUsers.get(id)!;
+}
+
+export function persistUsers() {
+    writeFileSync(getHomeFilePath(homePath, "users.json"), JSON.stringify(instanceToPlain(registeredUsers)));
 }

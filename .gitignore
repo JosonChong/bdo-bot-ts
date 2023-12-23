@@ -1,11 +1,9 @@
 .env
 node_modules
 itemList.txt
-config.json
 package-lock.json
 users.json
-test2.js
-test.js
 .cache
 dist
 test
+configs/config.json
