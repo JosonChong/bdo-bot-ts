@@ -73,9 +73,8 @@ client.on("messageCreate", async (msg) => {
             }
         } else {
             botMessage.addText("Unknow error occurred.");
+            console.error(error);
         }
-
-        console.error(error);
     }
     
     await botMessage.send();
@@ -85,7 +84,7 @@ client.on("messageCreate", async (msg) => {
             await msg.delete();
         } catch (_) {
             botMessage.addText("Attempted to delete the message but without success.");
-            botMessage.send();
+            await botMessage.send();
         }
     }
 });
